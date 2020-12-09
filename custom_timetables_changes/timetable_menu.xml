@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+		<!--<delete id="openeducat_timetable.menu_op_timetable" model="ir.ui.menu"></delete>-->
+
+<!--
+        <menuitem id="openeducat_timetable.menu_op_timetable" string="Timetable" name="Timetable"
+            parent="openeducat_timetable.menu_op_timetable_root" groups="openeducat_core.group_op_student"
+            sequence="10" action="openeducat_timetable.act_open_op_session_view" />
+-->
+
+        <!-- Configuration Menu -->
+
+        <menuitem id="openeducat_timetable.menu_op_period" string="Period" name="Period"
+            parent="openeducat_timetable.menu_op_timetable_config" groups="openeducat_core.group_op_faculty"
+            sequence="10" action="openeducat_timetable.act_open_op_timing_view" />
+            
+        <menuitem id="openeducat_timetable.menu_generate_time_table" string="Generate Timetable" name="Generate Timetable"
+            parent="openeducat_timetable.menu_op_timetable_config" groups="openeducat_core.group_op_back_office"
+            sequence="20" action="openeducat_timetable.act_open_generate_time_table_view" />
+            
+        <menuitem id="openeducat_timetable.menu_generate_time_table_report" string="Generate Timetable Report" name="Generate Timetable Report"
+            parent="openeducat_timetable.menu_op_timetable_config" groups="openeducat_core.group_op_student"
+            sequence="30" action="openeducat_timetable.act_open_time_table_report_view" />
+    </data>
+</odoo>

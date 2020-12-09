@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_lesson_tree" model="ir.ui.view">
+            <field name="name">op.lesson.tree</field>
+            <field name="model">op.lesson</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Lesson">
+                    <field name="lesson_name" />
+                    <field name="lesson_code" />
+                    <field name="chapter_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_lesson_form" model="ir.ui.view">
+            <field name="name">op.lesson.form</field>
+            <field name="model">op.lesson</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Lesson">
+                    <sheet>
+                        <group col="4">
+                            <field name="lesson_name" />
+                            <field name="lesson_code"/>
+                            <field name="chapter_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_lesson_search" model="ir.ui.view">
+            <field name="name">op.lesson.search</field>
+            <field name="model">op.lesson</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Lesson">
+                    <field name="lesson_name" />
+                    <field name="lesson_code" />
+                    <field name="chapter_id" />
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_lesson_view">
+            <field name="name">Lesson</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.lesson</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_lesson_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_lesson_view_form">
+            <field name="act_window_id" ref="act_open_op_lesson_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_lesson_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_lesson_view_tree">
+            <field name="act_window_id" ref="act_open_op_lesson_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_lesson_tree" />
+        </record>
+
+        <menuitem id="menu_op_lesson_sub" name="Lesson" parent="openeducat_core.menu_op_school_config_subject" sequence="20"
+            action="act_open_op_lesson_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty" />
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_assignment_form_inherit" model="ir.ui.view">
+            <field name="name">op.assignment.form.inherit</field>
+            <field name="model">op.assignment</field>
+            <field name="priority" eval="8" />
+            <field name="inherit_id" ref="openeducat_assignment.view_op_assignment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/field[@name='subject_id']" position="after">
+                    <field name="chapter_ids" widget="many2many_tags"  options="{'no_create_edit': True}"
+                            attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="lesson_ids" widget="many2many_tags"  options="{'no_create_edit': True}"
+                            attrs="{'readonly':[('state','!=','draft')]}" domain="[('chapter_id','=',chapter_ids)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="openeducat_timetable.act_open_time_table_report_view">
+            <field name="name">Generate Timetable Report</field>
+        </record>
+
+        <record id="view_time_table_report_form_inherit" model="ir.ui.view">
+            <field name="name">time.table.report.form</field>
+            <field name="model">time.table.report</field>
+            <field name="inherit_id" ref="openeducat_timetable.view_time_table_report_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <xpath expr="//div/group[3]/field[@name='course_id']" position="before">
+                    <field name="year_id"
+                        attrs="{'required':[('state','=','student')],'invisible':[('state','!=','student')]}" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_chapter_student,op_chapter_student,model_op_chapter,openeducat_core.group_op_student,1,0,0,0
+access_op_chapter_faculty,op_chapter_faculty,model_op_chapter,openeducat_core.group_op_faculty,1,1,1,0
+access_op_chapter_back_office,name_op_chapter_back_office,model_op_chapter,openeducat_core.group_op_back_office,1,1,0,0
+access_op_chapter_back_office_admin,name_op_chapter_back_office_admin,model_op_chapter,openeducat_core.group_op_back_office_admin,1,1,1,1
+access_op_lesson_student,op_lesson_student,model_op_lesson,openeducat_core.group_op_student,1,0,0,0
+access_op_lesson_faculty,op_lesson_faculty,model_op_lesson,openeducat_core.group_op_faculty,1,1,1,0
+access_op_lesson_back_office,name_op_lesson_back_office,model_op_lesson,openeducat_core.group_op_back_office,1,1,0,0
+access_op_lesson_back_office_admin,name_op_lesson_back_office_admin,model_op_lesson,openeducat_core.group_op_back_office_admin,1,1,1,1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_exam_form_inherit" model="ir.ui.view">
+            <field name="name">op.exam.form.inherit</field>
+            <field name="model">op.exam</field>
+            <field name="priority" eval="8" />
+            <field name="inherit_id" ref="openeducat_exam.view_op_exam_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/field[@name='subject_id']" position="after">
+                    <field name="chapter_ids" widget="many2many_tags"  options="{'no_create_edit': True}"/>
+                    <field name="lesson_ids" widget="many2many_tags"  options="{'no_create_edit': True}"
+                        domain="[('chapter_id','=',chapter_ids)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

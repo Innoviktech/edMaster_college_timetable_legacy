@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_chapter_tree" model="ir.ui.view">
+            <field name="name">op.chapter.tree</field>
+            <field name="model">op.chapter</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Chapter">
+                    <field name="chapter_name" />
+                    <field name="chapter_code" />
+                    <field name="subject_id" />
+                    <field name="lesson_ids" widget="many2many_tags" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_chapter_form" model="ir.ui.view">
+            <field name="name">op.chapter.form</field>
+            <field name="model">op.chapter</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Chapter">
+                    <sheet>
+                        <group col="4">
+                            <field name="chapter_name" />
+                            <field name="chapter_code"/>
+                            <field name="subject_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                        <group string="Lessons" name="lesson">
+                            <field name="lesson_ids" nolabel="1" readonly="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_chapter_search" model="ir.ui.view">
+            <field name="name">op.chapter.search</field>
+            <field name="model">op.chapter</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Chapter">
+                    <field name="chapter_name" />
+                    <field name="chapter_code" />
+                    <field name="subject_id" />
+                    <field name="lesson_ids" />
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_chapter_view">
+            <field name="name">Chapter</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.chapter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_chapter_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_chapter_view_form">
+            <field name="act_window_id" ref="act_open_op_chapter_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_chapter_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_chapter_view_tree">
+            <field name="act_window_id" ref="act_open_op_chapter_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_chapter_tree" />
+        </record>
+
+        <menuitem id="menu_op_chapter_sub" name="Chapter" parent="openeducat_core.menu_op_school_config_subject" sequence="15"
+            action="act_open_op_chapter_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty" />
+    </data>
+</odoo>

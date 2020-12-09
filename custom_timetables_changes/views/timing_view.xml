@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_op_timing_tree_inherit" model="ir.ui.view">
+            <field name="name">op.timing.tree.inherit</field>
+            <field name="model">op.timing</field>
+            <field name="inherit_id" ref="openeducat_timetable.view_op_timing_tree"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='am_pm']" position="after">
+                    <field name="end_hour" />
+                </xpath>
+                <xpath expr="/tree/field[@name='end_hour']" position="after">
+                    <field name="end_minute" />
+                </xpath>
+                <xpath expr="/tree/field[@name='end_minute']" position="after">
+                    <field name="pm_am" />
+                </xpath>
+<!--                <xpath expr="/tree/field[@name='pm_am']" position="after">-->
+<!--                <field name="end_hour" />-->
+<!--               </xpath>&ndash;&gt;-->
+            </field>
+        </record>
+        <record id="view_op_timing_form_inherit" model="ir.ui.view">
+            <field name="name">op.timing.form.inhirit</field>
+            <field name="model">op.timing</field>
+            <field name="inherit_id" ref="openeducat_timetable.view_op_timing_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/field[@name='am_pm']" position="after">
+                     <field name="end_hour"/>
+                     <field name="end_minute" />
+                     <field name="pm_am" />
+
+                </xpath>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="openeducat_timetable.act_open_op_timing_view">
+            <field name="name">Period</field>
+        </record>
+    </data>
+</odoo>

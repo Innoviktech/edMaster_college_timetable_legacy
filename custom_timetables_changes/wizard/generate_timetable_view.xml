@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="openeducat_timetable.act_open_generate_time_table_view">
+            <field name="name">Generate Timetale</field>
+        </record>
+
+        <record id="view_generate_time_table_form_inherit" model="ir.ui.view">
+            <field name="name">generate.time.table.form</field>
+            <field name="model">generate.time.table</field>
+            <field name="inherit_id" ref="openeducat_timetable.view_generate_time_table_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <xpath expr="//group/field[@name='course_id']" position="before">
+                    <field name="year_id" options="{'no_create_edit': True}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

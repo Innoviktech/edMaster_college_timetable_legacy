@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_session_search_inherit" model="ir.ui.view">
+            <field name="name">op.session.search</field>
+            <field name="model">op.session</field>
+            <field name="inherit_id" ref="openeducat_timetable.view_op_session_search"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='faculty_id']" position="before">
+                    <field name="year_id" select="True" />
+                </xpath>
+                <xpath expr="//group/filter[@name='faculty_id']" position="before">
+                    <filter string="Year" domain="[]" name="year_id"
+                        context="{'group_by':'year_id'}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_op_session_tree_inherit" model="ir.ui.view">
+            <field name="name">op.session.tree.inherit</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8" />
+            <field name="inherit_id" ref="openeducat_timetable.view_op_session_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='faculty_id']" position="after">
+                    <field name="year_id" />
+                    <field name="course_id" />
+                </xpath>
+                <xpath expr="/tree/field[@name='end_datetime']" position="after">
+                     <field name="alter_faculty_id" />
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_op_session_form_inherit" model="ir.ui.view">
+            <field name="name">op.session.form.inherit</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8" />
+            <field name="inherit_id" ref="openeducat_timetable.view_op_session_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet//group/field[@name='course_id']" position="before">
+                     <field name="year_id" options='{"no_open": True}'/>
+                </xpath>
+                <xpath expr="/form/sheet//group/field[@name='type']" position="after">
+                     <field name="alter_faculty_id" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_session_kanban_inherit" model="ir.ui.view">
+            <field name="name">op.session.kanban.inherit</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8" />
+            <field name="inherit_id" ref="openeducat_timetable.view_session_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="/kanban/templates/t//div/li/field[@name='end_datetime']" position="after">
+                     <t t-name="kanban-box">
+                         <div class="oe_kanban_left">
+                             <li
+                                t-if="record.alter_faculty_id.raw_value">
+                                <b>Alternative Faculty:</b>
+                                <field name="alter_faculty_id" />
+                             </li>
+                         </div>
+                     </t>
+                </xpath>
+                <xpath expr="/kanban/templates/t//div/li/field[@name='subject_id']" position="after">
+                     <t t-name="kanban-box">
+                         <div class="oe_kanban_left">
+                             <li
+                                t-if="record.year_id.raw_value">
+                                <b>Year:</b>
+                                <field name="year_id" />
+                             </li>
+                         </div>
+                     </t>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
